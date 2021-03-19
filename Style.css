@@ -1,0 +1,284 @@
+/*Généralités*/
+
+body {
+	background-color: rgb(140,198,63);
+}
+
+label {
+	font-weight: normal;
+}
+
+p {
+	margin: 1em 0 1em 0;
+}
+
+.italic {
+	font-style: italic;
+}
+
+/*Menu gauche*/
+ul {
+	margin-top: 18%;
+	padding-left: 0px;
+}
+
+li {
+	list-style-type: none;
+	font-size: 1.7em;
+	line-height: 1.5em;
+}
+
+li p {
+	margin-bottom: 5px;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+td {
+	padding: 10px 2px;
+	font-size: 20px;
+}
+
+/*td:first-child {
+	padding-right: 20px;
+}*/
+
+th {
+	font-size: 20px;
+}
+
+table input {
+	text-align:center;
+	max-width: 100px;
+}
+
+.exp1{
+	max-width: 400px;
+}
+
+.alinea {
+	padding-left: 40px;
+}
+
+.longueur {
+	background-image: url(images/arbre.png);
+	background-repeat: no-repeat;
+	background-position: left 0px top 35%;
+	background-size: contain;
+	height: 100%;
+	width: 270px;
+	background-color:#fff;
+	position: fixed!important;
+	z-index: 1;
+	overflow: auto;
+}
+
+
+
+/*Page principale*/
+
+
+.user {
+	position: absolute;
+	right: 350px;
+	top: 10px;
+	font-size: 20px;
+	line-height: 0.7em;
+	z-index: 1;
+
+}
+
+
+#menu-hg {
+	padding-top: 100px;
+	
+}
+
+.haut {
+	display: flex;
+	background-color: rgb(140,198,63);
+	position: sticky;
+	top: 0;
+}
+
+.page {
+	margin-left: 280px;
+}
+
+#btt-enr {
+	position: sticky;
+	bottom: 200px;
+}
+
+.enregistrer {
+	position: absolute;
+	right: 200px;
+}
+
+/*Onglets*/
+.onglet {
+	background-color: rgb(241,255,238);
+	width: 100%;
+	/* height: 100%;*/
+}
+
+.haut button {
+	background-color: rgb(140,169,135);
+	font-size: 24px;
+	border-right: 10px solid!important;
+	border-color: rgb(140,198,63)!important;
+}
+
+div.onglet p,label {
+	font-size: 18px;
+	display: inline-block;
+	min-width: 15%;
+	line-height: 2.2em;
+}
+
+#Generalites {
+	overflow-y: scroll visible!important;
+}
+
+.item {
+	display: flex;
+	justify-content: space-between;
+	margin-right: 25px;
+	margin-bottom: 10px;
+
+}
+
+.modif1 {
+	min-width: 0;
+}
+
+.grille1 {
+	display: grid;
+	grid-template: auto / 350px 350px ;
+}
+
+.grille2 {
+	display: grid;
+	grid-template: 50px / 51% ;
+}
+
+.grille3 {
+	display: grid;
+	align-items: baseline;
+	grid-template: auto / 50% 50% ;
+	border: 2px solid; 
+	padding: 6px; 
+	max-width: 50%; 
+	margin-bottom: 10px;
+
+}
+
+.grille4 {
+	display: grid;
+	align-items: baseline;
+	grid-template: auto / 30% 25% 30% 15% ;
+	border: 2px solid; 
+	padding: 6px; 
+	max-width:50%; 
+	margin-bottom: 10px;
+}
+
+.grille4 p{
+	margin: 0;
+}
+
+/*Planning*/
+.trio {
+	display: flex;
+	justify-content: space-between;
+	max-width: 1100px;
+}
+
+.encadre {
+	border:solid;
+	padding: 5px;
+}
+
+.encadre th {
+	font-weight: bold;
+}
+
+.encadre p{
+	margin: 0;
+}
+
+/*Tailles*/
+.resize1 {
+	max-width: 250px;
+	margin:8px;
+}
+
+.resize2 {
+	max-width: 98%;
+	margin:8px;
+}
+
+/*responsive*/
+@media (max-width: 1550px) {
+	li {
+		font-size: 1.4em;
+		line-height: 1.4em;
+	}
+
+	.grille3 {
+		max-width: 60%;
+	}
+}
+
+
+
+/*AJOUT MOURAD*/
+
+.table_parts
+{
+	border: 1px solid #000000; border-radius: 0em;
+	table-layout: fixed ;
+    width: 100% ;
+    margin: 1em;
+}
+
+.td_parts
+{
+	width:50%;
+	
+}
+
+/* css page documents*/
+.mes_documents {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1em;
+  margin-left: -30em;
+
+}
+.img_desc{
+	padding: 1.3em;
+	margin: 2em;
+	border: 1px solid black;
+ 	/*height: 12em;*/
+ 	width: 12em;
+ 	background-color:rgb(140,198,63);
+ 	
+}
+
+.img_doc {
+
+	height: 8em;
+	width: 8em;
+	margin-left:1em;
+}
+
+figcaption{
+	text-align: center;
+	font-size: 20px;
+}

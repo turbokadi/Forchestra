@@ -1,0 +1,39 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 09/03/2021 16:46
+  	*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticone.eot");
+  src: url("./Flaticone.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticone.woff2") format("woff2"),
+       url("./Flaticone.woff") format("woff"),
+       url("./Flaticone.ttf") format("truetype"),
+       url("./Flaticone.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="flaticone-"]:before, [class*=" flaticone-"]:before,
+[class^="flaticone-"]:after, [class*=" flaticone-"]:after {   
+  font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+margin-left: 20px;
+}
+
+.flaticone-document:before { content: "\f100"; }
+.flaticone-invoice:before { content: "\f101"; }
+.flaticone-certificate:before { content: "\f102"; }
+.flaticone-file:before { content: "\f103"; }
+.flaticone-id-card:before { content: "\f104"; }
+.flaticone-contract:before { content: "\f105"; }
+.flaticone-checklist:before { content: "\f106"; }
