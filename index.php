@@ -1,9 +1,4 @@
 <?php
-
-require_once("backend/connection.php");
-// Check if the user is connected
-connection::check_connection();
-
 require_once("backend/common.php");
 
 //Add DOCTYPE and html markup

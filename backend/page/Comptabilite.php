@@ -1,5 +1,5 @@
 <?php
-require_once("backend/common.php");
+
 
 $head = new head();
 $head->generate_head();

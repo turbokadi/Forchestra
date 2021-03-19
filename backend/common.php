@@ -1,5 +1,9 @@
 <?php
 
+require_once("connection.php");
+// Check if the user is connected
+connection::check_connection();
+
 require_once("pages.php");
 
 class head

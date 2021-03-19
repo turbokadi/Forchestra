@@ -37,7 +37,7 @@ class connection
     {
         if (!connection::get_current_user()->is_connected())
         {
-            header('Location: login.php');
+            header('Location: /login.php');
         }
     }
 }

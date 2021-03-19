@@ -15,8 +15,6 @@ if (!$bdd->set_charset("utf8")) {
     exit();
 }
 
-require_once("backend/common.php");
-
 $head = new head();
 $head->generate_head();
 
