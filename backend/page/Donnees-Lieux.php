@@ -1,45 +1,16 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Forchestra - Lieux</title>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
- 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<?php
+require_once("backend/common.php");
 
- 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+$head = new head();
+$head->add_css("style_tableau.css");
+$head->generate_head();
 
-    <link rel="stylesheet" type="text/css" href="font/flaticon.css">
-    <link rel="stylesheet" type="text/css" href="StyleTableau.css">
-</head>
-<body>
-  	
-	<div class="longueur">
-        <img src="images/Logo-Forchestra.png" class="resize1">
+common::open_body();
 
-		<nav>
-	        <ul>
-	            <li><p><i class="flaticon-folder"></i> Sessions</p></li>
-	            <li class="alinea"><a href="Forchestra.php">Nouvelle session</a></li>
-	            <li class="alinea"><a href="Sessions-en-cours.php">Sessions en cours</a></li>
-	            <li class="alinea"><a href="Sessions-terminees.php">Sessions terminées</a></li>
-
-	            <li><p><i class="flaticon-folder"></i> Données</p></li>
-	            <li class="alinea"><a href="Donnees-Clients.php">Clients</a></li>
-	            <li class="alinea"><a href="Donnees-Participants.php">Participants</a></li>
-	            <li class="alinea"><a href="Donnees-Formateurs.php">Formateurs</a></li>
-	            <li class="alinea" style="font-weight: bold;"><a href="Donnees-Lieux.php">Lieux</a></li><br>
-
-	            <li><a href="Comptabilite.php"><i class="flaticon-atm-card"></i> Comptabilité</a></li><br>
-
-	            <li><a href="Rechercher.php"><i class="flaticon-magnifying-glass"></i> Rechercher</a></li>
-	        </ul>
-	    </nav>
-	</div>
-	<div class="user">
-		<p><i class="flaticon-user"></i> Nom Prénom</p>
-		<a href="" style="margin-left: 35px;">Se déconnecter</a>
-	</div>
+// Add navigation bar section to change page
+common::add_navigation_bar(pages::$places);
+common::add_user_section();
+?>
 	<div class="conteneur">
 		<h1>Lieux</h1>
 		<hr></hr>
@@ -57,25 +28,25 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<td><button data-toggle="modal" data-target="#myModal_modif_participants"><img src="images/modif.png" style="max-width: 20px"></button></td>
+					<td><button data-toggle="modal" data-target="#myModal_modif_participants"><img src="static/img/icons/modif.png" style="max-width: 20px"></button></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td></td>
 					<td></td>
-					<td><button data-toggle="modal" data-target="#myModal_modif_participants"><img src="images/modif.png" style="max-width: 20px"></button></td>
+					<td><button data-toggle="modal" data-target="#myModal_modif_participants"><img src="static/img/icons/modif.png" style="max-width: 20px"></button></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td></td>
 					<td></td>
-					<td><a><img src="images/modif.png" style="max-width: 20px"></a></td>
+					<td><a><img src="static/img/icons/modif.png" style="max-width: 20px"></a></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td></td>
 					<td></td>
-					<td><button data-toggle="modal" data-target="#myModal_modif_participants"><img src="images/modif.png" style="max-width: 20px"></button></td>
+					<td><button data-toggle="modal" data-target="#myModal_modif_participants"><img src="static/img/icons/modif.png" style="max-width: 20px"></button></td>
 				</tr>
 			</tbody>
 		</table>
@@ -143,6 +114,4 @@
   </div>
 
 </div>
-
-</html>
 

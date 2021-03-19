@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenue sur Forchestra</title>
-    <link href="bootstrap-login.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" href="style_login.css">
+    <link href="static/css/bootstrap-login.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/style_login.css">
 </head>
 <body>
-    <header><img src="images/Logo-Forchestra.png" alt="Forchestra"></header>
+    <header><img src="static/img/Logo-Forchestra.png" alt="Forchestra"></header>
     <div class="conteneur">
-        <form action=verification.php method=post accept-charset="UTF-8">
+        <form action=backend/verification.php method=post accept-charset="UTF-8">
             <h2>Identification</h2>
             <hr size="20%">
             <div class="input-group mb-4">

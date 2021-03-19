@@ -7,7 +7,7 @@ if(isset($_GET['page']) && !empty($_GET['page'])){
     $currentPage = 1;
 }
 // On se connecte à là base de données en appelant un fichier externe réutilisable
-require_once('connect.php');
+require_once('backend/connect.php');
 
 // On détermine le nombre total de données
 $sql = 'SELECT COUNT(*) AS ID_client FROM `client`;';
@@ -47,56 +47,21 @@ $query->execute();
 $client = $query->fetchAll(PDO::FETCH_ASSOC);
 
 // On appelle le fichier de fermeture...
-require_once('close.php');
+require_once('backend/close.php');
+
+
+require_once("backend/common.php");
+
+$head = new head();
+$head->add_css("style_tableau.css");
+$head->generate_head();
+
+common::open_body();
+
+// Add navigation bar section to change page
+common::add_navigation_bar(pages::$clients);
+common::add_user_section();
 ?>
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Forchestra - Clients</title>
-	
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
- 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-
- 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-    <link rel="stylesheet" type="text/css" href="font/flaticon.css">
-    <link rel="stylesheet" type="text/css" href="StyleTableau.css">
-    
-</head>
-<body>
-  	
-	<div class="longueur">
-        <img src="images/logof.png" class="resize1">
-
-		<nav>
-	        <ul>
-	            <li><p><i class="flaticon-folder"></i> Sessions</p></li>
-	            <li class="alinea"><a href="Forchestra.php">Nouvelle session</a></li>
-	            <li class="alinea"><a href="Sessions-en-cours.php">Sessions en cours</a></li>
-	            <li class="alinea"><a href="Sessions-terminees.php">Sessions terminées</a></li>
-
-	            <li><p><i class="flaticon-folder"></i> Données</p></li>
-	            <li class="alinea" style="font-weight: bold;"><a href="Donnees-Clients.php">Clients</a></li>
-	            <li class="alinea"><a href="Donnees-Participants.php">Participants</a></li>
-	            <li class="alinea"><a href="Donnees-Formateurs.php">Formateurs</a></li>
-	            <li class="alinea"><a href="Donnees-Lieux.php">Lieux</a></li><br>
-
-	            <li><a href="Comptabilite.php"><i class="flaticon-atm-card"></i> Comptabilité</a></li><br>
-
-	            <li><a href="Rechercher.php"><i class="flaticon-magnifying-glass"></i> Rechercher</a></li>
-	        </ul>
-	    </nav>
-	</div>
-
-	<div class="user">
-		<p><i class="flaticon-user"></i> Nom Prénom</p>
-		<a href="" style="margin-left: 35px;">Se déconnecter</a>
-	</div>
-
 	<div class="conteneur">
 		<h1>Clients</h1>
 		<hr></hr>
@@ -112,8 +77,10 @@ require_once('close.php');
 				<th>Adresse</th>
 				<th>Téléphone</th>
 				<th>Type</th>
+				<th>Modifier</th>
 			</thead>
 			<tbody>
+				<script type="text/javascript">var cmpt_clients = 1;</script>
 				<?php
 				foreach($client as $clientunit){
 				?>
@@ -123,9 +90,9 @@ require_once('close.php');
 						<td><?= $clientunit['Nom_contact_formation'] ?></td>
 						<td><?= $clientunit['Adresse'] ?></td>
 						<td><?= $clientunit['Telephone'] ?></td>
-						<td><?= $clientunit['ASEI'] ?></td>						
+						<td><?= $clientunit['ASEI'] ?></td>
+						<td><div id="<?= $clientunit['ID_client'] ?>"><button data-toggle="modal" data-target="#myModal_modif_client" data-backdrop="false" data-fade="false"><img src="static/img/icons/modif.png" style="max-width: 20px"></button><div></td>
 					</tr>
-
 				<?php
 				}
 				?>
@@ -152,7 +119,7 @@ require_once('close.php');
 	</div>
 	
 
-	<!-- The Modal -->
+	<!-- Modal AJOUTER UN CLIENT -->
 <div id="myModal_clients" class="modal">
 
   <!-- Modal content -->
@@ -181,8 +148,6 @@ require_once('close.php');
 						<p>Situation du client</p>
 						<label for="actif">Actif </label>
 						<input type="radio" id="actif" name="type" size="25">
-						
-						
 						<label for="no_actif">Non actif </label>
 						<input type="radio" id="no_actif" name="type" size="25">
 						<p>Client ASEI</p>
@@ -190,6 +155,8 @@ require_once('close.php');
 						<input type="radio" id="oui" name="type" size="25">
 						<label for="non">Non</label>
 						<input type="radio" id="non" name="type" size="25"><br>
+						<label for="code_client">Code client</label>
+						<input type="text" id="code_client" name="code_client" size="50"><br>
 					</fieldset>
 					<button type="button" class="button_modal" data-dismiss="modal">Enregistrer</button>
 				</div>
@@ -197,6 +164,42 @@ require_once('close.php');
 	    </div>
 	</div>
 </div>
-</body>
-</html>
+
+	<!-- Modal POUR MODIFIER UN CLIENT-->
+<div class="modal" id="myModal_modif_client" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+	      <!-- Modal content-->
+	    <div class="modal-content">
+	        <div class="modal-header">
+	        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Ajouter un formateur depuis la base</h4>
+	        </div>
+	        <div class="modal-body">
+	        	<p>Rajouter le code ici, bon courage</p>
+	        		<label for="new_nom_orga">Nom de l'organisme : &ensp;</label><input  type="text" id="new_nom_orga" name="new_nom_orga" value="<?= $clientunit['Nom_organisme'] ?>"><br>
+	        		<label for="new_nom_cont_form">Nom du contact de la formation : &ensp;</label><input  type="text" id="new_nom_cont_form" name="new_nom_cont_form" value="<?= $clientunit['Nom_contact_formation'] ?>"><br>
+	        		<label for="new_adrs">Adresse : &ensp;</label><input  type="text" id="new_adrs" name="new_adrs" value="<?= $clientunit['Adresse'] ?>"><br>
+	        		<label for="new_telephone">Nom contact RH : &ensp;</label><input  type="text" id="new_telephone" name="new_telephone" value="<?= $clientunit['Telephone'] ?>"><br>
+	        		<label for="new_telephone">Nom contact comptabilité : &ensp;</label><input  type="text" id="new_telephone" name="new_telephone" value="<?= $clientunit['Nom_contact_compta'] ?>"><br>
+					<p>Situation du client : &ensp;</p>
+	        			<label for="new_actif">Actif </label>
+						<input type="radio" id="new_actif" name="type" size="25">
+						<label for="new_no_actif">Non actif </label>
+						<input type="radio" id="new_no_actif" name="type" size="25">
+	        		<p>Client ASEI : &ensp;<p>
+	        			<label for="oui">Oui</label>
+						<input type="radio" id="oui" name="type" size="25">
+						<label for="non">Non</label>
+						<input type="radio" id="non" name="type" size="25"><br>
+	        		<label for="new_code_client">Code client : &ensp;</label><input  type="text" id="new_code_client" name="new_code_client" value="<?= $clientunit['Code_client'] ?>">
+	        </div>
+
+	        <div class="modal-footer">
+	        	<button type="button" class="btn btn-default" data-dismiss="modal">Ajouter</button>
+	        	<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+	    	</div>
+    	</div>
+    </div>  
+</div>
 
