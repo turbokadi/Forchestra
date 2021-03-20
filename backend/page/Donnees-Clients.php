@@ -6,14 +6,12 @@ if(isset($_GET['page_client']) && !empty($_GET['page_client'])){
 }else{
     $currentPage = 1;
 }
-// On se connecte à là base de données en appelant un fichier externe réutilisable
-require_once('backend/connect.php');
 
 // On détermine le nombre total de données
 $sql = 'SELECT COUNT(*) AS ID_client FROM `client`;';
 
 // On prépare la requête
-$query = $db->prepare($sql);
+$query = database::get_db()->prepare($sql);
 
 // On exécute
 $query->execute();
@@ -35,7 +33,7 @@ $premier = ($currentPage * $parPage) - $parPage;
 $sql = 'SELECT * FROM `client` ORDER BY `Nom_organisme` DESC LIMIT :premier, :parpage;';
 
 // On prépare la requête
-$query = $db->prepare($sql);
+$query = database::get_db()->prepare($sql);
 
 $query->bindValue(':premier', $premier, PDO::PARAM_INT);
 $query->bindValue(':parpage', $parPage, PDO::PARAM_INT);
@@ -45,9 +43,6 @@ $query->execute();
 
 // On récupère les valeurs dans un tableau associatif
 $client = $query->fetchAll(PDO::FETCH_ASSOC);
-
-// On appelle le fichier de fermeture...
-require_once('backend/close.php');
 
 $head = new head();
 $head->add_css("style_tableau.css");
@@ -113,6 +108,25 @@ common::add_user_section();
                 </li>
             </ul>
         </nav>
+        <?php
+            if(isset($_GET[common::FALLBACK_KEYWORD]))
+                switch ($_GET[common::FALLBACK_KEYWORD]) {
+                    case common::UPDATE_OK_KEYWORD:
+                        echo '<p style="color: green;">Merci les données du client ont bien été modifiées</p>';
+                        break;
+                    case common::UPDATE_KO_KEYWORD:
+                        echo '<p style="color: red;">Un erreur c\'est produite aucune données n\'a été modifier</p>';
+                        break;
+                    case common::INSERT_OK_KEYWORD:
+                        echo '<p style="color: green;">Merci le nouveau client a bien été ajouté</p>';
+                        break;
+                    case common::INSERT_KO_KEYWORD:
+                        echo '<p style="color: red;">Un erreur c\'est produite le client n\'a pas été ajouté</p>';
+                        break;
+                    default:
+                        break;
+                }
+        ?>
 	</div>
 	
 
@@ -125,7 +139,7 @@ common::add_user_section();
 	    <button type="button" class="close" data-dismiss="modal">&times;</button>
 	   
 	    <!-- mon formulaire-->
-	      	<form name="donnees_client" method="post" action="" enctype="">
+	      	<form name="donnees_client" method="post" action="?<?= pages::PAGE_KEYWORD."=".pages::add_client_data ?>" enctype="">
 				<div id="donnees_client">
 					<br>
 					<fieldset>
@@ -143,19 +157,16 @@ common::add_user_section();
 						<label for="nom_cont_compta">Nom contact compta</label>
 						<input type="text" id="nom_cont_compta" name="nom_cont_compta" size="50"><br>
 						<p>Situation du client</p>
-						<label for="actif">Actif </label>
-						<input type="radio" id="actif" name="type" size="25">
-						<label for="no_actif">Non actif </label>
-						<input type="radio" id="no_actif" name="type" size="25">
+						<label for="type_actif">Actif </label>
+						<input type="radio" id="actif" name="type_actif" size="25">
 						<p>Client ASEI</p>
-						<label for="oui">Oui</label>
-						<input type="radio" id="oui" name="type" size="25">
-						<label for="non">Non</label>
-						<input type="radio" id="non" name="type" size="25"><br>
+						<label for="type_asei">Oui</label>
+						<input type="radio" id="oui" name="type_asei" size="25">
+                        <p>Code client</p>
 						<label for="code_client">Code client</label>
 						<input type="text" id="code_client" name="code_client" size="50"><br>
 					</fieldset>
-					<button type="button" class="button_modal" data-dismiss="modal">Enregistrer</button>
+					<button type="submit" class="button_modal">Enregistrer</button>
 				</div>
 			</form>
 	    </div>

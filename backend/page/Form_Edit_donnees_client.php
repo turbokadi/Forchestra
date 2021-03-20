@@ -39,7 +39,7 @@ if ($stmt = $bdd->prepare($query)) {
 	$stmt->bind_param("sssssssss",$no, $pcf, $ad, $tel, $ncrh, $ncomp, $tyac, $tyasei, $tycoco);
 
 	
-	$no=$_POST['nom_orga'];
+	$no=common::sanitize_entry($_POST['nom_orga']);
 	$pcf=$_POST['nom_cont_form'];
 	$ad=$_POST['adrs'];
 	$tel=$_POST['phone'];
@@ -49,32 +49,19 @@ if ($stmt = $bdd->prepare($query)) {
 	$tyasei=$_POST['type_asei'];
 	$tycoco=$_POST['code_client'];
 
+    if ($stmt->execute() ) {
+        common::redirect_to_index("?".pages::PAGE_KEYWORD."=".pages::clients."&".common::FALLBACK_KEYWORD."=".common::INSERT_OK_KEYWORD);
+    }
+    else {
+        common::redirect_to_index("?".pages::PAGE_KEYWORD."=".pages::clients."&".common::FALLBACK_KEYWORD."=".common::INSERT_KO_KEYWORD);
+    }
 
-	echo "<div class=\"conteneur\">";
-	echo "Merci les données du client ont bien été modifiées <br>";
-	echo '<a href="?page='.pages::clients.'"> Cliquez ici pour revenir à page des données clients </a>';
-	echo "</div>";
-
-
-
-
-    $stmt->execute();
-	
     /* Fermeture de la commande */
     $stmt->close();
-
-    common::redirect_to_index();
-	
 }
 else {
-echo " pb requête $query <BR>";
+    common::redirect_to_index("?".pages::PAGE_KEYWORD."=".pages::clients."&".common::FALLBACK_KEYWORD."=".common::UPDATE_KO_KEYWORD);
 }
 
-?>	
-	
-
-  
-	<?php
 		mysqli_close($bdd);
-	?>
-</html>
+?>

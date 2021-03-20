@@ -1,6 +1,4 @@
-
-
-<?php	
+<?php
 
 	$h="localhost"; // nom ou @ de la machine qui heberge le serveur de BdD
 	$u="root";      // nom de l'utilisateur pouvant acceder au serveur
@@ -16,10 +14,7 @@ if (!$bdd->set_charset("utf8")) {
     printf("Erreur lors du chargement du jeu de caractères utf8 \n");
     exit();
 }
-?>
 
-	
-<?php
 if(isset($_POST['nom_orga']))
 {
 	$orga = mysqli_real_escape_string($bdd,htmlspecialchars($_POST['nom_orga']));
@@ -55,17 +50,20 @@ if ($stmt = $bdd->prepare($query)) {
 	$tyasei=$_POST['type_asei'];
 	$tycoco=$_POST['code_client'];
 
-	header('Location: Donn%C3%A9es-Clients.php?erreur=2');
+    if ($stmt->execute() ) {
+		common::redirect_to_index("?".pages::PAGE_KEYWORD."=".pages::clients."&".common::FALLBACK_KEYWORD."=".common::INSERT_OK_KEYWORD);
+	}
+	else {
+		common::redirect_to_index("?".pages::PAGE_KEYWORD."=".pages::clients."&".common::FALLBACK_KEYWORD."=".common::INSERT_KO_KEYWORD);
+	}
 
+//	echo $stmt->error;
 
-    $stmt->execute();
-	
-    /* Fermeture de la commande */
-    $stmt->close();
-	
+	/* Fermeture de la commande */
+	$stmt->close();
 }
 else {
-echo " pb requête $query <BR>";
+	common::redirect_to_index("?".pages::PAGE_KEYWORD."=".pages::clients."&".common::FALLBACK_KEYWORD."=".common::INSERT_KO_KEYWORD);
 }
 }
 }

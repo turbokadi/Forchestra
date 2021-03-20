@@ -80,7 +80,6 @@ class connection
 
     public static function init_session($username,$password)
     {
-        // TODO check entry !
         $username = common::sanitize_entry($username);
         $password = common::sanitize_entry($password);
 

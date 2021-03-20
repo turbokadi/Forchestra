@@ -43,6 +43,12 @@ class head
 
 class common
 {
+    public const FALLBACK_KEYWORD = "fallback";
+    public const INSERT_OK_KEYWORD = "insert_ok";
+    public const INSERT_KO_KEYWORD = "insert_ko";
+    public const UPDATE_OK_KEYWORD = "update_ok";
+    public const UPDATE_KO_KEYWORD = "update_ko";
+
     static public function redirect_to_index($append = "")
     {
         header('Location: index.php'.$append);
