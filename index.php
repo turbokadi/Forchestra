@@ -1,5 +1,18 @@
 <?php
 require_once("backend/common.php");
+require_once("backend/connection.php");
+
+if ( isset($_POST[connection::USERNAME_KEYWORD]) && isset($_POST[connection::PASSWORD_KEYWORD])) {
+    connection::init_session($_POST[connection::USERNAME_KEYWORD],
+                             $_POST[connection::PASSWORD_KEYWORD]);
+}
+
+if ( isset($_GET[connection::DECONNECT_KEYWORD])) {
+    connection::deconnect();
+}
+
+// Check if the user is connected
+connection::check_connection();
 
 //Add DOCTYPE and html markup
 common::open_html_file();

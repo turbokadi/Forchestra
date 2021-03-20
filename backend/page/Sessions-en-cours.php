@@ -1,6 +1,5 @@
 <?php
 
-
 $head = new head();
 $head->add_css("style_tableau.css");
 $head->generate_head();

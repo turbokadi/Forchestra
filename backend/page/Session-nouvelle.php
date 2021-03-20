@@ -16,6 +16,9 @@ if (!$bdd->set_charset("utf8")) {
 }
 
 $head = new head();
+$head->add_js("javascript.js");
+$head->add_js("vanilla-calendar-min.js");
+$head->add_css("vanilla-calendar-min.css");
 $head->generate_head();
 
 common::open_body();

@@ -1,9 +1,5 @@
 <?php
 
-require_once("connection.php");
-// Check if the user is connected
-connection::check_connection();
-
 require_once("pages.php");
 
 class head
@@ -30,9 +26,6 @@ class head
         echo '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">';
         echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>';
         echo '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>';
-        echo '<!-- Pour le calendrier -->';
-        echo '<link rel="stylesheet" href="static/css/vanilla-calendar-min.css">';
-        echo '<script src="static/js/vanilla-calendar-min.js"></script>';
         echo '<!-- ------------------ -->';
         echo '<link rel="stylesheet" type="text/css" href="static/font/flaticon.css">';
         echo '<link rel="stylesheet" type="text/css" href="static/css/style.css">';
@@ -40,7 +33,6 @@ class head
             echo '<link rel="stylesheet" type="text/css" href="static/css/'.$css_file.'"></script>';
         }
         echo '<!-- JavaScript ! -->';
-        echo '<script src="static/js/javascript.js"></script>';
         foreach ($this->js_file_list as &$js_file) {
             echo '<script src="static/js/'.$js_file.'"></script>';
         }
@@ -51,6 +43,11 @@ class head
 
 class common
 {
+    static public function sanitize_entry($entry): string
+    {
+        return htmlspecialchars($entry);
+    }
+
     static public function open_html_file()
     {
         echo '<!DOCTYPE html>';
@@ -65,7 +62,7 @@ class common
     static public function close_html_file()
     {
         echo '</body>';
-        echo '<html>';
+        echo '</html>';
     }
 
     static public function add_navigation_bar($page)
@@ -96,8 +93,8 @@ class common
     {
     	echo '<!--champs de conexxion-->';
 	    echo '<div class="user">';
-		echo '<p><i class="flaticon-user"></i>'.connection::get_current_user()->get_username().'</p>';
-		echo '<a href="" style="margin-left: 35px;">Se déconnecter</a>';
+		echo '<p><i class="flaticon-user"></i>'.connection::get_current_user()->get_fullname().'</p>';
+		echo '<a href="?'.connection::DECONNECT_KEYWORD.'" style="margin-left: 35px;">Se déconnecter</a>';
 	    echo '</div>';
     }
 }

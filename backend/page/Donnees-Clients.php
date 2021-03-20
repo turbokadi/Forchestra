@@ -67,10 +67,8 @@ common::add_user_section();
 		<hr></hr>
 		<!-- Bien laisser le data-backdrop="false" car conflit de css et sinon écran noir -->
 		<button class="myBtn" data-toggle="modal" data-target="#myModal_clients" data-backdrop="false">+ Ajouter un client</button>
-
 		
 		<table class="table-1">
-
 			<thead>
 				<th>Nom d'organisme</th>
 				<th>Formation</th>
