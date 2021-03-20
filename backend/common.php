@@ -43,6 +43,11 @@ class head
 
 class common
 {
+    static public function redirect_to_index($append = "")
+    {
+        header('Location: index.php'.$append);
+    }
+
     static public function sanitize_entry($entry): string
     {
         return htmlspecialchars($entry);
@@ -74,16 +79,16 @@ class common
         echo '<nav>';
         echo '<ul>';
         echo '<li><p><i class="flaticon-folder"></i> Sessions</p></li>';
-        echo '<li class="alinea"'.($page == pages::$new_session ? $bold : "").'><a href="?page='.pages::$new_session.'">Nouvelle session</a></li>';
-        echo '<li class="alinea"'.($page == pages::$current_session ? $bold : "").'><a href="?page='.pages::$current_session.'">Sessions en cours</a></li>';
-        echo '<li class="alinea"'.($page == pages::$ended_session ? $bold : "").'><a href="?page='.pages::$ended_session.'">Sessions terminées</a></li>';
+        echo '<li class="alinea"'.($page == pages::new_session ? $bold : "").'><a href="?'.pages::PAGE_KEYWORD.'='.pages::new_session.'">Nouvelle session</a></li>';
+        echo '<li class="alinea"'.($page == pages::current_session ? $bold : "").'><a href="?'.pages::PAGE_KEYWORD.'='.pages::current_session.'">Sessions en cours</a></li>';
+        echo '<li class="alinea"'.($page == pages::ended_session ? $bold : "").'><a href="?'.pages::PAGE_KEYWORD.'='.pages::ended_session.'">Sessions terminées</a></li>';
         echo '<li><p><i class="flaticon-folder"></i> Données</p></li>';
-        echo '<li class="alinea"'.($page == pages::$clients ? $bold : "").'><a href="?page='.pages::$clients.'">Clients</a></li>';
-        echo '<li class="alinea"'.($page == pages::$participants ? $bold : "").'><a href="?page='.pages::$participants.'">Participants</a></li>';
-        echo '<li class="alinea"'.($page == pages::$trainers ? $bold : "").'><a href="?page='.pages::$trainers.'">Formateurs</a></li>';
-        echo '<li class="alinea"'.($page == pages::$places ? $bold : "").'><a href="?page='.pages::$places.'">Lieux</a></li><br>';
-        echo '<li '.($page == pages::$compta ? $bold : "").'><a href="?page='.pages::$compta.'"><i class="flaticon-atm-card"></i> Comptabilité</a></li><br>';
-        echo '<li '.($page == pages::$search ? $bold : "").'><a href="?page='.pages::$search.'"><i class="flaticon-magnifying-glass"></i> Rechercher</a></li>';
+        echo '<li class="alinea"'.($page == pages::clients ? $bold : "").'><a href="?'.pages::PAGE_KEYWORD.'='.pages::clients.'">Clients</a></li>';
+        echo '<li class="alinea"'.($page == pages::participants ? $bold : "").'><a href="?'.pages::PAGE_KEYWORD.'='.pages::participants.'">Participants</a></li>';
+        echo '<li class="alinea"'.($page == pages::trainers ? $bold : "").'><a href="?'.pages::PAGE_KEYWORD.'='.pages::trainers.'">Formateurs</a></li>';
+        echo '<li class="alinea"'.($page == pages::places ? $bold : "").'><a href="?'.pages::PAGE_KEYWORD.'='.pages::places.'">Lieux</a></li><br>';
+        echo '<li '.($page == pages::compta ? $bold : "").'><a href="?'.pages::PAGE_KEYWORD.'='.pages::compta.'"><i class="flaticon-atm-card"></i> Comptabilité</a></li><br>';
+        echo '<li '.($page == pages::search ? $bold : "").'><a href="?'.pages::PAGE_KEYWORD.'='.pages::search.'"><i class="flaticon-magnifying-glass"></i> Rechercher</a></li>';
         echo '</ul>';
         echo '</nav>';
         echo '</div>';

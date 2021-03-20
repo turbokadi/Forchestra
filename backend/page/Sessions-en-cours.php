@@ -7,7 +7,7 @@ $head->generate_head();
 common::open_body();
 
 // Add navigation bar section to change page
-common::add_navigation_bar(pages::$current_session);
+common::add_navigation_bar(pages::current_session);
 common::add_user_section();
 ?>
 		<!--champs corps de la page-->

@@ -1,8 +1,8 @@
 <!-- PHP pour se connecter à la base-->
 <?php
 // On détermine sur quelle page on se trouve
-if(isset($_GET['page']) && !empty($_GET['page'])){
-    $currentPage = (int) strip_tags($_GET['page']);
+if(isset($_GET['page_client']) && !empty($_GET['page_client'])){
+    $currentPage = (int) strip_tags($_GET['page_client']);
 }else{
     $currentPage = 1;
 }
@@ -49,9 +49,6 @@ $client = $query->fetchAll(PDO::FETCH_ASSOC);
 // On appelle le fichier de fermeture...
 require_once('backend/close.php');
 
-
-
-
 $head = new head();
 $head->add_css("style_tableau.css");
 $head->generate_head();
@@ -59,7 +56,7 @@ $head->generate_head();
 common::open_body();
 
 // Add navigation bar section to change page
-common::add_navigation_bar(pages::$clients);
+common::add_navigation_bar(pages::clients);
 common::add_user_section();
 ?>
 	<div class="conteneur">
@@ -67,8 +64,10 @@ common::add_user_section();
 		<hr></hr>
 		<!-- Bien laisser le data-backdrop="false" car conflit de css et sinon écran noir -->
 		<button class="myBtn" data-toggle="modal" data-target="#myModal_clients" data-backdrop="false">+ Ajouter un client</button>
+
 		
 		<table class="table-1">
+
 			<thead>
 				<th>Nom d'organisme</th>
 				<th>Formation</th>
@@ -89,7 +88,7 @@ common::add_user_section();
 						<td><?= $clientunit['Adresse'] ?></td>
 						<td><?= $clientunit['Telephone'] ?></td>
 						<td><?= $clientunit['ASEI'] ?></td>
-						<td><div id="<?= $clientunit['ID_client'] ?>"><button data-toggle="modal" data-target="#myModal_modif_client" data-backdrop="false" data-fade="false"><img src="static/img/icons/modif.png" style="max-width: 20px"></button><div></td>
+						<td><div id="<?= $clientunit['ID_client'] ?>"><a href="?page=<?= pages::edit_client?>&id=<?= $clientunit['ID_client'] ?>"><img src="static/img/icons/modif.png" style="max-width: 20px"></a><div></td>
 					</tr>
 				<?php
 				}
@@ -100,17 +99,17 @@ common::add_user_section();
             <ul class="pagination">
                 <!-- Lien vers la page précédente (désactivé si on se trouve sur la 1ère page) -->
                 <li class="page-item <?= ($currentPage == 1) ? "disabled" : "" ?>">
-                    <a href="Donnees-Clients?page=<?= $currentPage - 1 ?>" class="page-link">Précédente</a>
+                    <a href="?page=<?=pages::clients."&page_client=".($currentPage - 1) ?>" class="page-link">Précédente</a>
                 </li>
                 <?php for($page = 1; $page <= $pages; $page++): ?>
                   <!-- Lien vers chacune des pages (activé si on se trouve sur la page correspondante) -->
                   <li class="page-item <?= ($currentPage == $page) ? "active" : "" ?>">
-                        <a href="Donnees-Clients?page=<?= $page ?>" class="page-link"><?= $page ?></a>
+                        <a href="?page=<?=pages::clients."&page_client=".$page ?>" class="page-link"><?= $page ?></a>
                     </li>
                 <?php endfor ?>
                   <!-- Lien vers la page suivante (désactivé si on se trouve sur la dernière page) -->
                   <li class="page-item <?= ($currentPage == $pages) ? "disabled" : "" ?>">
-                    <a href="Donnees-Clients?page=<?= $currentPage + 1 ?>" class="page-link">Suivante</a>
+                    <a href="?page=<?=pages::clients."&page_client=".($currentPage + 1) ?>" class="page-link">Suivante</a>
                 </li>
             </ul>
         </nav>

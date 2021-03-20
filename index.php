@@ -21,31 +21,40 @@ $page = isset($_GET["page"]) ? $_GET["page"] : "";
 
 // Routeur choisi la page de destination
 switch ($page) {
-    case pages::$clients:
+    case pages::clients:
         require_once("backend/page/Donnees-Clients.php");
         break;
-    case pages::$participants:
+    case pages::participants:
         require_once("backend/page/Donnees-Participants.php");
         break;
-    case pages::$trainers:
+    case pages::trainers:
         require_once("backend/page/Donnees-Formateurs.php");
         break;
-    case pages::$places:
+    case pages::places:
         require_once("backend/page/Donnees-Lieux.php");
         break;
-    case pages::$compta:
+    case pages::compta:
         require_once("backend/page/Comptabilite.php");
         break;
-    case pages::$search:
+    case pages::search:
         require_once("backend/page/Rechercher.php");
         break;
-    case pages::$current_session:
+    case pages::current_session:
         require_once("backend/page/Sessions-en-cours.php");
         break;
-    case pages::$ended_session:
+    case pages::ended_session:
         require_once("backend/page/Sessions-terminees.php");
         break;
-    case pages::$new_session:
+    case pages::edit_client:
+        require_once("backend/page/Edit_donnees_client.php");
+        break;
+    case pages::form_edit_client:
+        require_once("backend/page/Form_Edit_donnees_client.php");
+        break;
+    case pages::add_client_data:
+        require_once("backend/page/Ajout_donnees_client.php");
+        break;
+    case pages::new_session:
     default:
         require_once("backend/page/Session-nouvelle.php");
         break;

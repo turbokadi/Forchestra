@@ -103,7 +103,7 @@ class connection
             $_SESSION[connection::SESSION_TEL_KEYWORD]=$result[connection::DB_TEL_KEYWORD];
             $_SESSION[connection::SESSION_MAIL_KEYWORD]=$result[connection::DB_MAIL_KEYWORD];
 
-            self::redirect_to_index();
+            common::redirect_to_index();
         }
         else
         {
@@ -170,10 +170,5 @@ class connection
     static private function redirect_to_login()
     {
         header('Location: login.php');
-    }
-
-    static private function redirect_to_index()
-    {
-        header('Location: index.php');
     }
 }

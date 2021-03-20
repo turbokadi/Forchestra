@@ -8,7 +8,7 @@ $head->generate_head();
 common::open_body();
 
 // Add navigation bar section to change page
-common::add_navigation_bar(pages::$participants);
+common::add_navigation_bar(pages::participants);
 common::add_user_section();
 ?>
 	<div class="conteneur">

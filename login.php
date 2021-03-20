@@ -38,7 +38,7 @@ require_once("backend/connection.php");
                             echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
                             break;
                         case connection::TIMEOUT_CONNECTION:
-                            echo "<p style='color:red'>Vous devez vous reconnectez, votre session a expiré.</p>";
+                            echo "<p style='color:red'>Vous devez vous reconnectez, votre session à expiré.</p>";
                             break;
                         case connection::DECONNECT_KEYWORD:
                             echo "<p style='color:green'>Vous vous êtes deconnecté.</p>";
