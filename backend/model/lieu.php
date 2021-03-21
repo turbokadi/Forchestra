@@ -6,6 +6,7 @@ class lieu_model extends model
 {
     public const DB_TABLE_NAME = 'lieu';
 
+    public const ID = "ID_lieu";
     public const LOCATION_NAME = "Nom";
     public const ADDRESS = "Adresse";
     public const ROOM = "Salle";

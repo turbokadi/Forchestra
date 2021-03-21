@@ -20,10 +20,8 @@ require_once("backend/model/lieu.php");
 $table_view = new table_view("Lieux");
 $table_view->set_element_name("lieu");
 $table_view->set_page_link_keyword($current_page);
-$table_view->set_columns(array("Nom de lieu","Adresse","Salle","Modifier"));
 $table_view->set_columns(array( lieu_model::LOCATION_NAME => "Nom de lieu",
-                                lieu_model::ADDRESS => "Adresse",
-                                lieu_model::ROOM => "Salle"));
+                                lieu_model::ADDRESS => "Adresse"));
 
 $table_view->set_data_model(new lieu_model());
 $table_view->generate_table_view();

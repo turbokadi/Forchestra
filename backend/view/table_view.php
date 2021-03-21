@@ -70,7 +70,7 @@ class table_view
             foreach ($this->_db_column_list as &$key) {
                 echo '<td>'.$row[$key].'</td>';
             }
-            echo '<td><button class="modify_btn" data-toggle="modal" data-target="#modify_modal" data-backdrop="false"></button></td>';
+            echo '<td><button id="id_'.$row[$this->_data_model::class::ID].'" class="modify_btn" data-toggle="modal" data-target="#modify_modal" data-backdrop="false"></button></td>';
             echo '</tr>';
         }
 

@@ -15,11 +15,15 @@ common::add_user_section();
 component::open_container();
 
 require_once("backend/view/table_view.php");
+require_once("backend/model/formateurs.php");
 
 $table_view = new table_view("Formateurs");
 $table_view->set_element_name("formateur");
 $table_view->set_page_link_keyword($current_page);
-$table_view->set_columns(array("N° de passeport","Nom","Prénom","Téléphone","E-mail","Modifier"));
+$table_view->set_columns(array( formateurs_model::LASTNAME => "Nom",
+                                formateurs_model::FIRSTNAME => "Prénom"));
+
+$table_view->set_data_model(new formateurs_model());
 $table_view->generate_table_view();
 
 component::close_container();

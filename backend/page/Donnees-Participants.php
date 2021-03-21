@@ -15,18 +15,18 @@ common::add_user_section();
 component::open_container();
 
 require_once("backend/view/table_view.php");
+require_once("backend/model/participants.php");
 
 $table_view = new table_view("Participants");
 $table_view->set_element_name("participant");
 $table_view->set_page_link_keyword($current_page);
-$table_view->set_columns(array("N° de passeport","Nom","Prénom","Téléphone","E-mail","Modifier"));
-//$table_view->set_columns(array( participants_model::ORGA_NAME => "N° de passeport",
-//                                participants_model::FORMATION_NAME => "Nom",
-//                                participants_model::ADDRESS => "Prénom",
-//                                participants_model::TEL => "Téléphone",
-//                                participants_model::ASEI => "E-mail"));
+$table_view->set_columns(array( participants_model::NUM_PASSPORT => "N° de passeport",
+                                participants_model::LASTNAME => "Nom",
+                                participants_model::FIRSTNAME => "Prénom",
+                                participants_model::TEL => "Téléphone",
+                                participants_model::MAIL => "E-mail"));
 
-//$table_view->set_data_model(new participants_model());
+$table_view->set_data_model(new participants_model());
 $table_view->generate_table_view();
 
 component::close_container();
