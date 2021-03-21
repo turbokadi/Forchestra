@@ -109,3 +109,55 @@ class common
 	    echo '</div>';
     }
 }
+
+class component
+{
+    public static function open_container()
+    {
+        echo '<div class="conteneur">';
+    }
+
+    public static function close_container()
+    {
+        echo '</div>';
+    }
+
+    public static function open_table($columns)
+    {
+        echo '<table class="table-1">';
+        echo '<thead>';
+        foreach ($columns as &$column) {
+            echo '<th>'.$column.'</th>';
+        }
+        echo '</thead>';
+        echo '<tbody>';
+    }
+
+    public static function close_table()
+    {
+        echo '</tbody>';
+        echo '</table>';
+    }
+
+    public static function add_fallback_message()
+    {
+        if(isset($_GET[common::FALLBACK_KEYWORD])) {
+            switch ($_GET[common::FALLBACK_KEYWORD]) {
+                case common::UPDATE_OK_KEYWORD:
+                    echo '<p class="fallback_message" style="background-color: green;">Les données ont bien été modifiées !</p>';
+                    break;
+                case common::UPDATE_KO_KEYWORD:
+                    echo '<p class="fallback_message" style="background-color: red;">Un erreur c\'est produite aucune données n\'a été modifier !</p>';
+                    break;
+                case common::INSERT_OK_KEYWORD:
+                    echo '<p class="fallback_message" style="background-color: green;">Les données ont bien été ajouté !</p>';
+                    break;
+                case common::INSERT_KO_KEYWORD:
+                    echo '<p class="fallback_message" style="background-color: red;">Un erreur c\'est produite les données n\'ont pas été ajouté !</p>';
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+}

@@ -49,7 +49,7 @@ if ($stmt = $bdd->prepare($query)) {
 	$tyasei=$_POST['type_asei'];
 	$tycoco=$_POST['code_client'];
 
-    if ($stmt->execute() ) {
+    if ( $stmt->execute() ) {
         common::redirect_to_index("?".pages::PAGE_KEYWORD."=".pages::clients."&".common::FALLBACK_KEYWORD."=".common::INSERT_OK_KEYWORD);
     }
     else {

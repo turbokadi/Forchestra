@@ -148,8 +148,9 @@ table input {
 
 /*Tableau**********************************************************************************************************/
 .conteneur {
-	width: 1100px;
-	height: 600px;
+	width: 60%;
+	height: auto;
+	min-height: 30%;
 	background-color: rgb(241,255,238);
 	position: absolute;
 	top: 15%;
@@ -188,14 +189,12 @@ thead th {
 .conteneur h1 {
 	margin-left: 44%;
 	font-size: 2.5rem;
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .table-1 td, .table-1 th {
     padding: 5px 10px;
     text-align: center;
-    font-size: 1rem;
-    font-family: Verdana;
+    font-size: 1.2rem;
     color:#000;
 }
 
@@ -207,18 +206,31 @@ thead th {
     background: #fff;
 }
 
-.myBtn {
+.insert_btn {
 	margin:5px 0 10px 80%;
 }
 
-/* à supprimer car changement de code #precedent, #suivant {
-	position: relative;
-	top: 8px;
-	left: 90%;
-	margin: 2px;
-}*/
+.modify_btn {
+	background-color: rgba(0,0,0,0.1);
+	background-image: url("../img/icons/modif.png");
+	background-repeat: no-repeat;
+	background-size: auto 80%;
+	background-position: center;
+	border-radius: 5px;
+	margin: 0 !important;
+	height: 3em;
+	width: 6em;
+}
 
-
+.fallback_message {
+	padding: 2px;
+	padding-left: 10px;
+	margin: 25px;
+	margin-left: 80px;
+	margin-right: 80px;
+	font-size: 1.6rem;
+	color: white;
+}
 
 
 /*code mourad***************************************************************************************************/

@@ -1,5 +1,6 @@
 <?php
 
+$current_page = pages::trainers;
 
 $head = new head();
 $head->add_css("style_tableau.css");
@@ -8,43 +9,21 @@ $head->generate_head();
 common::open_body();
 
 // Add navigation bar section to change page
-common::add_navigation_bar(pages::trainers);
+common::add_navigation_bar($current_page);
 common::add_user_section();
-?>
-	<div class="conteneur">
-		<h1>Formateurs</h1>
-		<hr></hr>
-		<!-- Bien laisser le data-backdrop="false" car conflit de css et sinon écran noir -->
-		<button class="myBtn" data-toggle="modal" data-target="#myModal_formateurs" data-backdrop="false">+ Ajouter un formateur </button>
-		<table class="table-1">
-			<thead>
-				<th>N° de formateur</th>
-				<th>Nom</th>
-				<th>Prénom</th>
-				<th>Modifier</th>
-			</thead>
-			<tbody>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td><button data-toggle="modal" data-target="#myModal_modif_formateurs"><img src="static/img/icons/modif.png" style="max-width: 20px"></button></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td><button data-toggle="modal" data-target="#myModal_modif_formateurs"><img src="static/img/icons/modif.png" style="max-width: 20px"></button></td>
-				</tr>
-			</tbody>
-		</table>
-		<nav>
-            <ul class="pagination">
-                <!-- Ici Mélanie ou Alexandre rajoutera la pagination avec PHP comme la table client -->
-            </ul>
-        </nav>
-	</div>
 
+component::open_container();
+
+require_once("backend/view/table_view.php");
+
+$table_view = new table_view("Formateurs");
+$table_view->set_element_name("formateur");
+$table_view->set_page_link_keyword($current_page);
+$table_view->set_columns(array("N° de passeport","Nom","Prénom","Téléphone","E-mail","Modifier"));
+$table_view->generate_table_view();
+
+component::close_container();
+?>
 		
 	<!-- The Modal -->
 <div id="myModal_formateurs" class="modal">

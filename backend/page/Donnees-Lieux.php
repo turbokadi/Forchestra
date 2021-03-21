@@ -1,5 +1,6 @@
 <?php
 
+$current_page = pages::places;
 
 $head = new head();
 $head->add_css("style_tableau.css");
@@ -8,54 +9,27 @@ $head->generate_head();
 common::open_body();
 
 // Add navigation bar section to change page
-common::add_navigation_bar(pages::places);
+common::add_navigation_bar($current_page);
 common::add_user_section();
+
+component::open_container();
+
+require_once("backend/view/table_view.php");
+require_once("backend/model/lieu.php");
+
+$table_view = new table_view("Lieux");
+$table_view->set_element_name("lieu");
+$table_view->set_page_link_keyword($current_page);
+$table_view->set_columns(array("Nom de lieu","Adresse","Salle","Modifier"));
+$table_view->set_columns(array( lieu_model::LOCATION_NAME => "Nom de lieu",
+                                lieu_model::ADDRESS => "Adresse",
+                                lieu_model::ROOM => "Salle"));
+
+$table_view->set_data_model(new lieu_model());
+$table_view->generate_table_view();
+
+component::close_container();
 ?>
-	<div class="conteneur">
-		<h1>Lieux</h1>
-		<hr></hr>
-		<!-- Bien laisser le data-backdrop="false" car conflit de css et sinon écran noir -->
-		<button class="myBtn" data-toggle="modal" data-target="#myModal_lieux" data-backdrop="false">+ Ajouter un lieu </button>
-		<table class="table-1">
-			<thead>
-				<th>Nom de lieu</th>
-				<th>Adresse</th>
-				<th>Salle</th>
-				<th>Modifier</th>
-			</thead>
-			<tbody>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td><button data-toggle="modal" data-target="#myModal_modif_participants"><img src="static/img/icons/modif.png" style="max-width: 20px"></button></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td><button data-toggle="modal" data-target="#myModal_modif_participants"><img src="static/img/icons/modif.png" style="max-width: 20px"></button></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td><a><img src="static/img/icons/modif.png" style="max-width: 20px"></a></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td><button data-toggle="modal" data-target="#myModal_modif_participants"><img src="static/img/icons/modif.png" style="max-width: 20px"></button></td>
-				</tr>
-			</tbody>
-		</table>
-		<nav>
-            <ul class="pagination">
-                <!-- Ici Mélanie ou Alexandre rajoutera la pagination avec PHP comme la table client -->
-            </ul>
-        </nav>
-	</div>
 
 	<!-- The Modal -->
 <div id="myModal_lieux" class="modal">

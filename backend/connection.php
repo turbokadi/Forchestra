@@ -1,6 +1,6 @@
 <?php
 
-require("backend/database.php");
+require_once("backend/database.php");
 
 class connection
 {
